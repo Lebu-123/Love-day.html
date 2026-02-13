@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ida – My Forever Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI', cursive;
+  background: radial-gradient(circle at center,#ff6f91,#c9184a,#7b002c);
+  color:white;
+  overflow-x:hidden;
+  overflow-y:auto;
+  cursor:none;
+  animation:heartbeatBg 3s infinite;
+}
+
+@keyframes heartbeatBg{
+  0%,100%{background-size:100%;}
+  50%{background-size:105%;}
+}
+
+/* Loading screen */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#7b002c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:9999;
+  animation:fadeOut 2s forwards;
+  animation-delay:3s;
+}
+
+@keyframes fadeOut{
+  to{opacity:0;visibility:hidden;}
+}
+
+.loader-heart{
+  font-size:3em;
+  animation:beat 1s infinite;
+}
+@keyframes beat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+}
+
+/* Glow cursor */
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 0 15px #fff,0 0 35px #ff4e78;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+}
+
+/* Main container */
+.container{
+  padding:20px;
+  max-width:850px;
+  margin:auto;
+  text-align:center;
+  animation:fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+  font-size:2.5em;
+  text-shadow:0 0 20px #fff;
+}
+
+input{
+  padding:12px;
+  border-radius:30px;
+  border:none;
+  text-align:center;
+}
+
+button{
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#c9184a;
+  font-weight:bold;
+  margin:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{transform:scale(1.1);}
+
+.note{
+  display:none;
+  margin-top:20px;
+  background:rgba(255,255,255,0.15);
+  padding:25px;
+  border-radius:20px;
+  backdrop-filter:blur(8px);
+  text-align:left;
+  line-height:1.8;
+}
+
+/* Rose petals */
+.petal{
+  position:fixed;
+  top:-20px;
+  font-size:20px;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);opacity:0;}
+}
+
+/* Fireworks */
+.firework{
+  position:fixed;
+  font-size:25px;
+  animation:explode 1s ease-out forwards;
+}
+@keyframes explode{
+  to{transform:scale(2);opacity:0;}
+}
+
+/* Kiss popup */
+#kiss{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:2em;
+  z-index:999;
+}
+
+/* Floating sparkles */
+.sparkle{
+  position:fixed;
+  font-size:12px;
+  animation:spark 3s linear infinite;
+}
+@keyframes spark{
+  0%{opacity:1;}
+  100%{opacity:0;transform:translateY(-40px);}
+}
+
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div id="loader">
+  <div class="loader-heart">💖</div>
+  <p>Preparing something magical for Ida...</p>
+</div>
+
+<div class="cursor" id="cursor"></div>
+
+<div class="container" id="lock">
+  <h1>For Ida Only 💕</h1>
+  <p>Enter your name to unlock your destiny 💌</p>
+  <input id="password" type="password">
+  <br>
+  <button onclick="unlock()">Unlock My Heart 🔐</button>
+  <p id="error"></p>
+</div>
+
+<div class="container hidden" id="content">
+  <h1>Happy Valentine’s Day, Ida 💖🌹✨</h1>
+  <button id="startBtn">Open Your Love Letter 💌</button>
+  <button onclick="whisperLove()">🔊 Hear Something Soft</button>
+
+  <div class="note" id="note">
+    <div id="typedText"></div>
+  </div>
+</div>
+
+<!-- Music -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/zG8k9Jx3P8w?autoplay=1&loop=1&playlist=zG8k9Jx3P8w"
+allow="autoplay"></iframe>
+
+<div id="kiss">
+  💋💋💋<br>
+  A thousand kisses for you, Ida 😘💖<br><br>
+  Forever Yours 💍
+</div>
+
+<script>
+
+/* PASSWORD */
+function unlock(){
+  if(password.value==="Ida"){
+    lock.style.display="none";
+    content.classList.remove("hidden");
+    launchFireworks();
+  } else {
+    error.innerText="Wrong password 💔";
+  }
+}
+
+/* FIREWORKS */
+function launchFireworks(){
+  for(let i=0;i<25;i++){
+    const f=document.createElement("div");
+    f.className="firework";
+    f.innerHTML="✨";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+}
+
+/* TYPEWRITER */
+const message = `Your full Valentine message goes here exactly as written earlier.`;
+
+let i=0;
+function typeWriter(){
+  if(i<message.length){
+    typedText.innerHTML+=message.charAt(i);
+    i++;
+    setTimeout(typeWriter,20);
+  } else {
+    setTimeout(()=>kiss.style.display="flex",3000);
+  }
+}
+
+startBtn.onclick=()=>{
+  note.style.display="block";
+  typeWriter();
+  startBtn.style.display="none";
+};
+
+/* Whisper */
+function whisperLove(){
+  const audio=new Audio("https://www.soundjay.com/human/heartbeat-01a.mp3");
+  audio.play();
+}
+
+/* Rose petals */
+setInterval(()=>{
+  const petal=document.createElement("div");
+  petal.className="petal";
+  petal.innerHTML="🌹";
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.animationDuration=(Math.random()*3+4)+"s";
+  document.body.appendChild(petal);
+  setTimeout(()=>petal.remove(),7000);
+},400);
+
+/* Sparkles */
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="sparkle";
+  s.innerHTML="✨";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),3000);
+},300);
+
+/* Glow cursor */
+document.addEventListener("mousemove",(e)=>{
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
+});
+
+</script>
+
+</body>
+  </html>
