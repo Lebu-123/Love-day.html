@@ -135,19 +135,6 @@ button:hover{transform:scale(1.1);}
   to{transform:scale(2);opacity:0;}
 }
 
-/* Kiss popup */
-#kiss{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  font-size:2em;
-  z-index:999;
-}
-
 /* Floating sparkles */
 .sparkle{
   position:fixed;
@@ -185,23 +172,16 @@ button:hover{transform:scale(1.1);}
 <div class="container hidden" id="content">
   <h1>Happy Valentine’s Day, Ida 💖🌹✨</h1>
   <button id="startBtn">Open Your Love Letter 💌</button>
-  <button onclick="whisperLove()">🔊 Hear Something Soft</button>
 
   <div class="note" id="note">
     <div id="typedText"></div>
   </div>
 </div>
 
-<!-- Music: Unanifaa - Iyanii -->
+<!-- Music: Embedded YouTube -->
 <iframe width="0" height="0"
-src="https://www.youtube.com/embed/zG8k9Jx3P8w?autoplay=1&loop=1&playlist=zG8k9Jx3P8w"
+src="https://www.youtube.com/embed/1ho0ixDMsos?autoplay=1&loop=1&playlist=1ho0ixDMsos"
 allow="autoplay"></iframe>
-
-<div id="kiss">
-  💋💋💋<br>
-  A thousand kisses for you, Ida 😘💖<br><br>
-  Forever Yours 💍
-</div>
 
 <script>
 
@@ -253,8 +233,6 @@ function typeWriter(){
     typedText.innerHTML+=message.charAt(i);
     i++;
     setTimeout(typeWriter,20);
-  } else {
-    setTimeout(()=>kiss.style.display="flex",3000);
   }
 }
 
@@ -263,12 +241,6 @@ startBtn.onclick=()=>{
   typeWriter();
   startBtn.style.display="none";
 };
-
-/* Whisper */
-function whisperLove(){
-  const audio=new Audio("https://www.soundjay.com/human/heartbeat-01a.mp3");
-  audio.play();
-}
 
 /* Rose petals */
 setInterval(()=>{
@@ -300,4 +272,4 @@ document.addEventListener("mousemove",(e)=>{
 </script>
 
 </body>
-</html>
+  </html>
