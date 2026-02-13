@@ -110,6 +110,8 @@ button:hover{transform:scale(1.1);}
   backdrop-filter:blur(8px);
   text-align:left;
   line-height:1.8;
+  font-size:1em;
+  white-space:pre-wrap; /* preserves line breaks */
 }
 
 /* Rose petals */
@@ -190,7 +192,7 @@ button:hover{transform:scale(1.1);}
   </div>
 </div>
 
-<!-- Music -->
+<!-- Music: Unanifaa - Iyanii -->
 <iframe width="0" height="0"
 src="https://www.youtube.com/embed/zG8k9Jx3P8w?autoplay=1&loop=1&playlist=zG8k9Jx3P8w"
 allow="autoplay"></iframe>
@@ -227,7 +229,7 @@ function launchFireworks(){
   }
 }
 
-/* TYPEWRITER */
+/* TYPEWRITER WITH FULL VALENTINE MESSAGE */
 const message = `Happy Valentine’s Day, my beautiful Ida 💖🌹✨
 My heart feels extra full today because I get to celebrate you, the most precious gift life has ever given me. From the moment you walked into my world, everything became softer, brighter, sweeter. You are my forever Valentine, my sunshine on cloudy days, my calm in chaos, my greatest blessing wrapped in the most beautiful smile 😘💘🌸
 Ida, mamaa, you don’t even realize how deeply you are loved. The way you laugh, the way you care, the way your eyes light up when you’re excited — it all makes my heart melt every single time 🥰💞 I look at you and I see my best friend, my safe place, my future, my everything.
@@ -242,7 +244,8 @@ My shawtty, loving you is effortless, natural, and the most beautiful adventure 
 Cute little soul, your kindness and softness make this world better. You have such a pure heart, and I’m so lucky that it beats for me 💘🌷
 Darling, on this Valentine’s Day, I just want you to remember how deeply you are treasured. You are adored beyond words, desired beyond measure, and loved beyond limits 💋❤️💞💖✨
 Ida, my love, my heart, my everything — thank you for being you. Thank you for choosing me. Thank you for letting me love you.
-Forever yours, always and endlessly 💍💓🌹`;
+Forever yours, always and endlessly 💍💓🌹
+`;
 
 let i=0;
 function typeWriter(){
@@ -294,8 +297,7 @@ document.addEventListener("mousemove",(e)=>{
   cursor.style.left=e.clientX+"px";
   cursor.style.top=e.clientY+"px";
 });
-
 </script>
 
 </body>
-  </html>
+</html>
